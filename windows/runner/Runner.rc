@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.estilo" "\0"
-            VALUE "FileDescription", "fp_estilo" "\0"
+            VALUE "FileDescription", "plantpal" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "fp_estilo" "\0"
+            VALUE "InternalName", "plantpal" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2026 com.estilo. All rights reserved." "\0"
-            VALUE "OriginalFilename", "fp_estilo.exe" "\0"
-            VALUE "ProductName", "fp_estilo" "\0"
+            VALUE "OriginalFilename", "plantpal.exe" "\0"
+            VALUE "ProductName", "plantpal" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

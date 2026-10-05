@@ -1,4 +1,4 @@
-package com.estilo.fp_estilo
+package com.estilo.plantpal
 
 import io.flutter.embedding.android.FlutterActivity
 
