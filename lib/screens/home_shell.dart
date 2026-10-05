@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../models/plant.dart';
+import '../models/species.dart';
+import '../services/plant_api.dart';
 import 'add_plant_screen.dart';
 import 'plant_list_screen.dart';
 import 'schedule_screen.dart';
@@ -15,6 +17,7 @@ class HomeShell extends StatefulWidget {
 
 class _HomeShellState extends State<HomeShell> {
   int _index = 0;
+  final _api = PlantApi();
   final List<Plant> _plants = [
     Plant(
       id: '1',
@@ -42,6 +45,18 @@ class _HomeShellState extends State<HomeShell> {
   void _delete(Plant plant) =>
       setState(() => _plants.removeWhere((p) => p.id == plant.id));
 
+  void _addSpecies(Species s) {
+    setState(() => _plants.add(Plant(
+          id: DateTime.now().microsecondsSinceEpoch.toString(),
+          nickname: s.scientificName,
+          species: s.scientificName,
+          waterEveryDays: 7,
+          lastWatered: DateTime.now(),
+        )));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('Added ${s.scientificName}')));
+  }
+
   Future<void> _openAdd() async {
     final plant = await Navigator.of(context).push<Plant>(
       MaterialPageRoute(builder: (_) => const AddPlantScreen()),
@@ -59,7 +74,7 @@ class _HomeShellState extends State<HomeShell> {
         onDelete: _delete,
       ),
       ScheduleScreen(plants: _plants, onWater: _water),
-      const SearchScreen(),
+      SearchScreen(api: _api, onAddSpecies: _addSpecies),
     ];
     return Scaffold(
       body: pages[_index],
