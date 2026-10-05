@@ -1,4 +1,4 @@
-# FP-Estilo
+# FP-RootAccess
 
 Flutter final project for SE2142 (BSSE 2).
 
