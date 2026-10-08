@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home_shell.dart';
+import 'app.dart';
+import 'providers/plant_provider.dart';
 
-void main() => runApp(const PlantPalApp());
+/// Entry point.
+///
+/// The saved plant list is read from disk *before* the first frame so the
+/// home screen never flashes an empty state on a cold start.
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class PlantPalApp extends StatelessWidget {
-  const PlantPalApp({super.key});
+  final provider = PlantProvider();
+  await provider.load();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PlantPal',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
-      ),
-      home: const HomeShell(),
-    );
-  }
+  runApp(PlantPalApp(provider: provider));
 }
